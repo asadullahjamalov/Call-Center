@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "customer_requests")
-public class CustomerRequest {
+public class CustomerCall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -19,9 +19,9 @@ public class CustomerRequest {
     private String surname;
     private String address;
     private String note;
-    @OneToOne
+    @ManyToOne
     private CreditType creditType;
-    @OneToOne
+    @ManyToOne
     private AdvertisementType advertisementType;
     @ManyToOne
     private CallCenterOperator callCenterOperator;

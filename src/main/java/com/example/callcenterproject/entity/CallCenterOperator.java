@@ -22,6 +22,6 @@ public class CallCenterOperator {
     private String username;
     private String password;
     @OneToMany
-    private List<CustomerRequest> customerRequestList;
+    private List<CustomerCall> customerCallList;
 
 }
