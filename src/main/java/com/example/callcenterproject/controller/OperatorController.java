@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/operator")
-public class JwtAuthenticationController {
+public class OperatorController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final JwtUserDetailsService userDetailsService;
     private final OperatorService operatorService;
 
-    public JwtAuthenticationController(AuthenticationManager authenticationManager,
-                                       JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService, OperatorService operatorService) {
+    public OperatorController(AuthenticationManager authenticationManager,
+                              JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService, OperatorService operatorService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
