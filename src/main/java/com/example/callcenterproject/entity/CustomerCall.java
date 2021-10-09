@@ -24,7 +24,7 @@ public class CustomerCall {
     @ManyToOne
     private AdvertisementType advertisementType;
     @ManyToOne
-    private CallCenterOperator callCenterOperator;
+    private Operator operator;
 
 
 }

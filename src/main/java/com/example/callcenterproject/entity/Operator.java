@@ -12,7 +12,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "operators")
-public class CallCenterOperator {
+public class Operator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
