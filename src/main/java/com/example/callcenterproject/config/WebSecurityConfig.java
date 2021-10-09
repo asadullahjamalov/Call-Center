@@ -55,6 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/operator/register").permitAll()
                 .antMatchers("/api/operator/login").permitAll()
+                .antMatchers("/api/credit-type/**").permitAll()
+                .antMatchers("/api/advertisement-type/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)

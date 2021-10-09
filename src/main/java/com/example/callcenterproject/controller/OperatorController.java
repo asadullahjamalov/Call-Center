@@ -24,16 +24,16 @@ public class OperatorController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
-    private final JwtUserDetailsService userDetailsService;
     private final OperatorService operatorService;
+    private final JwtUserDetailsService jwtUserDetailsService;
 
     public OperatorController(AuthenticationManager authenticationManager,
-                              JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService,
-                              OperatorService operatorService) {
+                              JwtTokenUtil jwtTokenUtil, OperatorService operatorService,
+                              JwtUserDetailsService jwtUserDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.userDetailsService = userDetailsService;
         this.operatorService = operatorService;
+        this.jwtUserDetailsService = jwtUserDetailsService;
     }
 
     @PostMapping("/register")
@@ -45,7 +45,7 @@ public class OperatorController {
     @PostMapping(value = "/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest jwtRequest) throws Exception {
         authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
-        final UserDetails userDetails = userDetailsService
+        final UserDetails userDetails = jwtUserDetailsService
                 .loadUserByUsername(jwtRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         log.info("Operator logged in successfully");

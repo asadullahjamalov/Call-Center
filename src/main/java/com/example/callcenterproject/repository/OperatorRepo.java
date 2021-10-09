@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface OperatorRepo extends JpaRepository<Operator, Long> {
-
-    @Query(value = "select c from Operator c where c.username=:username")
+    @Query(value = "select o from Operator o where o.username=:username")
     Operator getOperatorByUsername(String username);
 }

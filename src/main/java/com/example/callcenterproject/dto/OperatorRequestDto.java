@@ -10,7 +10,8 @@ public class OperatorRequestDto {
     public OperatorRequestDto() {
     }
 
-    public OperatorRequestDto(String name, String surname, long phoneNumber, String username, String password) {
+    public OperatorRequestDto(String name, String surname, long phoneNumber,
+                              String username, String password) {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;

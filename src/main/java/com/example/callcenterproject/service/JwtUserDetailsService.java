@@ -1,7 +1,5 @@
 package com.example.callcenterproject.service;
 
-import java.util.ArrayList;
-
 import com.example.callcenterproject.entity.Operator;
 import com.example.callcenterproject.exception.OperatorNotFound;
 import com.example.callcenterproject.model.ExceptionResponse;
@@ -11,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -22,9 +22,10 @@ public class JwtUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      Operator operator =  operatorRepo.getOperatorByUsername(username);
-        if (operator!=null) {
+    public UserDetails loadUserByUsername(String username) {
+        Operator operator = operatorRepo.getOperatorByUsername(username);
+        System.out.println(operator.getUsername());
+        if (operator != null) {
             return new User(username, operator.getPassword(),
                     new ArrayList<>());
         } else {

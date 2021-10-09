@@ -1,14 +1,20 @@
 package com.example.callcenterproject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class AdvertisementTypeRequestDto {
     private String advertisementType;
+
+    public AdvertisementTypeRequestDto() {
+    }
+
+    public AdvertisementTypeRequestDto(String advertisementType) {
+        this.advertisementType = advertisementType;
+    }
+
+    public String getAdvertisementType() {
+        return advertisementType;
+    }
+
+    public void setAdvertisementType(String advertisementType) {
+        this.advertisementType = advertisementType;
+    }
 }

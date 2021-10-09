@@ -10,7 +10,8 @@ public class OperatorResponseDto {
     public OperatorResponseDto() {
     }
 
-    public OperatorResponseDto(long id, String name, String surname, long phoneNumber, String username) {
+    public OperatorResponseDto(long id, String name, String surname,
+                               long phoneNumber, String username) {
         this.id = id;
         this.name = name;
         this.surname = surname;

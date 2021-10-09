@@ -23,9 +23,9 @@ public class ExceptionHandlerUnit {
         return ex.getExceptionResponse();
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(Exception.class)
-    public ExceptionResponse handleUnexpectedError(Exception ex){
-        return new ExceptionResponse(ex.getMessage(),500);
-    }
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ExceptionHandler(Exception.class)
+//    public ExceptionResponse handleUnexpectedError(Exception ex){
+//        return new ExceptionResponse(ex.getMessage(),500);
+//    }
 }
