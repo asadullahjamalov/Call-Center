@@ -28,7 +28,8 @@ public class OperatorController {
     private final OperatorService operatorService;
 
     public OperatorController(AuthenticationManager authenticationManager,
-                              JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService, OperatorService operatorService) {
+                              JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService,
+                              OperatorService operatorService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
@@ -36,22 +37,19 @@ public class OperatorController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<OperatorResponseDto> addAgent(@RequestBody OperatorRequestDto operatorRequestDto) {
+    public ResponseEntity<OperatorResponseDto> register(@RequestBody OperatorRequestDto operatorRequestDto) {
         log.info("Operator registered successfully");
         return new ResponseEntity<>(operatorService.addAgent(operatorRequestDto), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
+    @PostMapping(value = "/login")
+    public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest jwtRequest) throws Exception {
+        authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
         final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
-
+                .loadUserByUsername(jwtRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-
-        return ResponseEntity.ok(new JwtResponse(token));
+        log.info("Operator logged in successfully");
+        return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
     }
 
     private void authenticate(String username, String password) throws Exception {
