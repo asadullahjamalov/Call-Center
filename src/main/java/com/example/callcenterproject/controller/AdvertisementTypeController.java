@@ -41,7 +41,7 @@ public class AdvertisementTypeController {
 
     @PutMapping("/{advertisementTypeId}")
     public ResponseEntity<AdvertisementTypeResponseDto> updateAdvertisementTypeById(@RequestBody AdvertisementTypeRequestDto requestDto,
-                                                                             @PathVariable long advertisementTypeId) {
+                                                                                    @PathVariable long advertisementTypeId) {
         log.info("Update advertisement type by id successfully");
         return new ResponseEntity<>(advertisementTypeService.updateAdvertisementTypeById(requestDto, advertisementTypeId), HttpStatus.OK);
     }
