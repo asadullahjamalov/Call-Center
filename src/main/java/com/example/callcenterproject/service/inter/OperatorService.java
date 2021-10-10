@@ -6,5 +6,5 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface OperatorService {
     OperatorResponseDto addAgent(OperatorRequestDto requestDto);
-//    UserDetails loadUserByUsername(String username);
+    UserDetails loadUserByUsername(String username);
 }

@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.callcenterproject.service.JwtUserDetailsService;
+import com.example.callcenterproject.service.inter.OperatorService;
 import com.example.callcenterproject.util.JwtTokenUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,11 +21,11 @@ import io.jsonwebtoken.ExpiredJwtException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final JwtUserDetailsService jwtUserDetailsService;
+    private final OperatorService operatorService;
     private final JwtTokenUtil jwtTokenUtil;
 
-    public JwtRequestFilter(JwtUserDetailsService jwtUserDetailsService, JwtTokenUtil jwtTokenUtil) {
-        this.jwtUserDetailsService = jwtUserDetailsService;
+    public JwtRequestFilter(OperatorService operatorService, JwtTokenUtil jwtTokenUtil) {
+        this.operatorService = operatorService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
@@ -52,7 +52,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = operatorService.loadUserByUsername(username);
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

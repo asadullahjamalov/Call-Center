@@ -6,6 +6,8 @@ import com.example.callcenterproject.entity.CreditType;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface CreditTypeMapper {
 
@@ -14,4 +16,6 @@ public interface CreditTypeMapper {
     CreditType requestDtoToEntity(CreditTypeRequestDto dto);
 
     CreditTypeResponseDto entityToResponseDto(CreditType entity);
+
+    List<CreditTypeResponseDto> entityListToResponseDtoList(List<CreditType> entityList);
 }

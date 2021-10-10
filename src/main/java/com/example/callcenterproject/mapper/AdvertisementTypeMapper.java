@@ -6,6 +6,8 @@ import com.example.callcenterproject.entity.AdvertisementType;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface AdvertisementTypeMapper {
 
@@ -14,4 +16,6 @@ public interface AdvertisementTypeMapper {
     AdvertisementType requestDtoToEntity(AdvertisementTypeRequestDto dto);
 
     AdvertisementTypeResponseDto entityToResponseDto(AdvertisementType entity);
+
+    List<AdvertisementTypeResponseDto> entityListToResponseDtoList(List<AdvertisementType> entityList);
 }

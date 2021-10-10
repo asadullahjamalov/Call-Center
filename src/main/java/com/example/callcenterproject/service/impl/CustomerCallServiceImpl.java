@@ -29,10 +29,7 @@ public class CustomerCallServiceImpl implements CustomerCallService {
     @Override
     public CustomerCallResponseDto createCustomerCall(String token, CustomerCallRequestDto requestDto) {
         CustomerCall customerCall = customerCallMapper.requestDtoToEntity(requestDto);
-        System.out.println("heeeereeee");
-        System.out.println(jwtTokenUtil.getUsernameFromToken(token));
         customerCall.setOperator(operatorRepo.getOperatorByUsername(jwtTokenUtil.getUsernameFromToken(token)));
-        System.out.println(jwtTokenUtil.getUsernameFromToken(token));
         return customerCallMapper.entityToResponseDto(customerCallRepo.save(customerCall));
     }
 }

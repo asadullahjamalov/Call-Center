@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class OperatorServiceImpl implements OperatorService {
+public class OperatorServiceImpl implements OperatorService, UserDetailsService {
 
     private final OperatorRepo operatorRepo;
     private final OperatorMapper operatorMapper;
@@ -43,14 +43,14 @@ public class OperatorServiceImpl implements OperatorService {
         return operatorMapper.entityToResponseDto(operator);
     }
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Operator operator =  operatorRepo.getOperatorByUsername(username);
-//        if (operator!=null) {
-//            return new User(username, operator.getPassword(),
-//                    new ArrayList<>());
-//        } else {
-//            throw new OperatorNotFound(new ExceptionResponse("Operator not found with username: " + username, 404));
-//        }
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Operator operator =  operatorRepo.getOperatorByUsername(username);
+        if (operator!=null) {
+            return new User(username, operator.getPassword(),
+                    new ArrayList<>());
+        } else {
+            throw new OperatorNotFound(new ExceptionResponse("Operator not found with username: " + username, 404));
+        }
+    }
 }

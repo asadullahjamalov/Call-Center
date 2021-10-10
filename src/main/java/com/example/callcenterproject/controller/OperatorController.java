@@ -4,7 +4,6 @@ import com.example.callcenterproject.dto.OperatorRequestDto;
 import com.example.callcenterproject.dto.OperatorResponseDto;
 import com.example.callcenterproject.model.JwtRequest;
 import com.example.callcenterproject.model.JwtResponse;
-import com.example.callcenterproject.service.JwtUserDetailsService;
 import com.example.callcenterproject.service.inter.OperatorService;
 import com.example.callcenterproject.util.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +24,12 @@ public class OperatorController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final OperatorService operatorService;
-    private final JwtUserDetailsService jwtUserDetailsService;
 
     public OperatorController(AuthenticationManager authenticationManager,
-                              JwtTokenUtil jwtTokenUtil, OperatorService operatorService,
-                              JwtUserDetailsService jwtUserDetailsService) {
+                              JwtTokenUtil jwtTokenUtil, OperatorService operatorService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.operatorService = operatorService;
-        this.jwtUserDetailsService = jwtUserDetailsService;
     }
 
     @PostMapping("/register")
@@ -45,7 +41,7 @@ public class OperatorController {
     @PostMapping(value = "/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest jwtRequest) throws Exception {
         authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
-        final UserDetails userDetails = jwtUserDetailsService
+        final UserDetails userDetails = operatorService
                 .loadUserByUsername(jwtRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         log.info("Operator logged in successfully");
