@@ -29,9 +29,9 @@ public class OperatorDaoImpl implements OperatorDao {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Operator> cq = cb.createQuery(Operator.class);
 
-        Root<Operator> employee = cq.from(Operator.class);
-        Predicate idPredicate = cb.equal(employee.get("username"), username);
-        cq.where(idPredicate);
+        Root<Operator> operator = cq.from(Operator.class);
+        Predicate usernamePredicate = cb.equal(operator.get("username"), username);
+        cq.where(usernamePredicate);
 
         TypedQuery<Operator> query = em.createQuery(cq);
 

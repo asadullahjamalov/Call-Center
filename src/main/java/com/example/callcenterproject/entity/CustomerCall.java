@@ -1,9 +1,6 @@
 package com.example.callcenterproject.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "customer_requests")
